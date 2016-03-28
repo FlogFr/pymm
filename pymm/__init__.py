@@ -7,3 +7,8 @@
    \ \_\     /\___/
     \/_/     \/__/
 """
+from .db import connect
+
+__all__ = [
+    'connect',
+]

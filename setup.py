@@ -22,6 +22,10 @@ setup(
     url='https://github.com/aRkadeFR',
     keywords='pymm model manager postgresql postgres database',
     packages=['pymm', ],
+    scripts=['bin/pymm'],
+    install_requires=[
+        'psycopg2>=2.6.1',
+    ],
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',

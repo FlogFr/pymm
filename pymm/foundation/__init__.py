@@ -40,7 +40,11 @@ class Pymm(object):
 
 
 class Session(object):
-    """ Session object in order to query the DB from the client interface """
+    """
+    Session object in order to query the DB from the client interface
+
+    data descriptor with Client in order to communicate between each of them
+    """
     pass
 
 

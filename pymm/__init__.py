@@ -8,7 +8,9 @@
     \/_/     \/__/
 """
 from .db import connect
+from .foundation import Pymm
 
 __all__ = [
     'connect',
+    'Pymm',
 ]

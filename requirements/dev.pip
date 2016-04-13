@@ -2,4 +2,3 @@ setuptools
 ipdb
 tox==2.3.1
 isort==4.2.2
-pytest==2.9.1

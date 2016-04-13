@@ -58,3 +58,6 @@ class SessionBuilder(object):
         session = SB(dsn='pgsql://user:pass@host/db_name', param='value').session()
         """
         pass
+
+    def session():
+        pass

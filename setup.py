@@ -28,4 +28,5 @@ setup(
         'Topic :: Database',
         'Development Status :: 1 - Planning',
     ],
+    test_suite='tests',
 )

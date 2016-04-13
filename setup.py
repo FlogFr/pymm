@@ -1,11 +1,6 @@
 import os
 from setuptools import setup
 
-from pypandoc import convert
-
-def read_md(f):
-    return convert(f, 'rst')
-
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -18,7 +13,7 @@ setup(
     author_email='contact@arkade.info',
     description='Pymm - Python Model Manager',
     license='CC',
-    long_description=read_md('README.rst'),
+    long_description=read('README.rst'),
     url='https://github.com/aRkadeFR',
     keywords='pymm model manager postgresql postgres database',
     packages=['pymm', ],

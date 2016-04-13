@@ -1,0 +1,14 @@
+language: python
+python:
+    - "2.7"
+    - "3.4"
+    - "3.5"
+    - "nightly"
+# install dependencies
+services:
+    - postgresql
+addons:
+    - postgresql: "9.4"
+before_script:
+    - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+script: "python setup.py test"

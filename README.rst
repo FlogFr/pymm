@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/aRkadeFR/pymm.svg?branch=master
+    :target: https://travis-ci.org/aRkadeFR/pymm
+
 =====
 Pymm
 =====

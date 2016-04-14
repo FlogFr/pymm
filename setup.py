@@ -6,9 +6,13 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
+def read_version(fname):
+    return read(fname).strip()
+
+
 setup(
     name='Pymm',
-    version=read('VERSION'),
+    version=read_version('VERSION'),
     author='aRkadeFR',
     author_email='contact@arkade.info',
     description='Pymm - Python Model Manager',

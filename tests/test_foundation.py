@@ -7,6 +7,7 @@ pymm = Pymm('pgsql://user:pass@host/first_db') # create a default session
 session = pymm['default'] # get the default session
 
 """
+import os
 import unittest
 import psycopg2
 
@@ -16,7 +17,7 @@ class FoundationTest(unittest.TestCase):
 
     def test_simple_connect_and_query_database_with_psycopg2(self):
         """ Simple test the database connectivity """
-        conn = psycopg2.connect('dbname=travis_ci_test user=postgres')
+        conn = psycopg2.connect('dbname={!s} user={!s}'.format(os.environ['DB_NAME'], os.environ['DB_USER']))
         cur = conn.cursor()
         cur.execute('CREATE TABLE test (id integer, value character varying(15));')
         cur.execute("INSERT INTO test (id, value) VALUES (12, 'pouet'), (14, 'ole');")

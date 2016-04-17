@@ -8,8 +8,9 @@ python:
 services:
     - postgresql
 addons:
-    - postgresql: "9.4"
+    postgresql: "9.4"
 before_script:
     - psql -c "CREATE DATABASE travis_ci_test;" -U postgres
     - psql -c "CREATE ROLE travis_ci_test WITH SUPERUSER LOGIN PASSWORD 'travis_ci_password';" -U postgres
+    - pip install -U setuptools
 script: "python setup.py test"

@@ -12,12 +12,16 @@ import unittest
 import psycopg2
 
 
-class FoundationTest(unittest.TestCase):
-    """ test pymm foundation module """
+DB_NAME = os.environ['DB_NAME']
+DB_USER = os.environ['DB_USER']
+
+
+class BasicDBTest(unittest.TestCase):
+    """ test pymm psycopg2 module """
 
     def test_simple_connect_and_query_database_with_psycopg2(self):
         """ Simple test the database connectivity """
-        conn = psycopg2.connect('dbname={!s} user={!s}'.format(os.environ['DB_NAME'], os.environ['DB_USER']))
+        conn = psycopg2.connect('dbname={!s} user={!s}'.format(DB_NAME, DB_USER))
         cur = conn.cursor()
         cur.execute('CREATE TABLE test (id integer, value character varying(15));')
         cur.execute("INSERT INTO test (id, value) VALUES (12, 'pouet'), (14, 'ole');")
@@ -27,3 +31,10 @@ class FoundationTest(unittest.TestCase):
         conn.rollback()
         cur.close()
         conn.close()
+
+
+class FoundationTest(unittest.TestCase):
+    """ Test the foundation module """
+
+    def test_dumb(self):
+        self.assertEqual(1 + 1, 2)

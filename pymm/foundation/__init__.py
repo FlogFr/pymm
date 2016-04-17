@@ -39,12 +39,28 @@ class Pymm(object):
         pass
 
 
-class Session(object):
+class SessionInterface(object):
     """
-    Session object in order to query the DB from the client interface
+    SessionInterface object in order to query the DB from the client interface
 
-    data descriptor with Client in order to communicate between each of them
+    data descriptor with Client in order to communicate between each other
+
+    Is a client.session = Session()
+    or session.client = Client() ?
+
+    I think it is client.session = SessionInterface()
     """
+    def __get__(self, obj, type=None):
+        assert isinstance(obj, ClientInterface)
+        return self.session
+
+    def __set__(self, obj, value):
+        assert isinstance(obj, ClientInterface)
+        self.val = value
+
+
+class Session(SessionInterface):
+    """ Session implementation of the SessionInterface """
     pass
 
 
@@ -61,3 +77,12 @@ class SessionBuilder(object):
 
     def session():
         pass
+
+
+class ClientInterface(object):
+    """
+    ClientInterface that needs to be implemented by all Clien
+
+    a Session is a data descriptor. This will have a
+    """
+    session = SessionInterface()

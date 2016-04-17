@@ -11,4 +11,4 @@ addons:
     - postgresql: "9.4"
 before_script:
     - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
-script: "python setup.py test"
+script: "python setup.py coverage"

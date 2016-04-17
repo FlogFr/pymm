@@ -1,5 +1,6 @@
 import unittest
 
+
 class DumbTest(unittest.TestCase):
     """ DumbTest """
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# flake8: noqa
 #
 # Pymm documentation build configuration file, created by
 # sphinx-quickstart on Sun Mar 27 23:02:27 2016.

@@ -32,5 +32,13 @@ setup(
         'Topic :: Database',
         'Development Status :: 1 - Planning',
     ],
+    entry_points={
+        'distutils.commands': [
+            'coverage = test.support:CoverageAnalysis',
+        ],
+    },
+    tests_require=[
+        'coverage>=4.0.3',
+    ],
     test_suite='tests',
 )

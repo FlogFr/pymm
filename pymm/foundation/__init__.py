@@ -41,7 +41,7 @@ class Pymm(object):
         pass
 
 
-class SessionInterface(object, six.with_metaclass=abc.ABCMeta):
+class SessionInterface(six.with_metaclass(abc.ABCMeta, object)):
     """
     SessionInterface object in order to query the DB from the client interface
 

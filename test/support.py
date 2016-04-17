@@ -1,18 +1,14 @@
 import unittest
-from coverage import Coverage
-from setuptools import Command
+try:
+    from coverage import Coverage
+except ImportError:
+    pass
+from setuptools.command import test as TestCommand
 
 
-class CoverageAnalysis(Command):
-    """ python setup.py coverage """
+class CoverageAnalysisCommand(TestCommand):
+    """ add coverage analysis to test command """
     description = "Run coverage analysis with unit test"
-    user_options = []
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
 
     def run(self):
         " Run coverage on unit test "

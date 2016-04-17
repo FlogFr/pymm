@@ -34,7 +34,7 @@ setup(
     ],
     entry_points={
         'distutils.commands': [
-            'coverage = test.support:CoverageAnalysis',
+            'coverage = test.support:CoverageAnalysisCommand',
         ],
     },
     tests_require=[

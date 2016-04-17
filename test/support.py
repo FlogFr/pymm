@@ -3,7 +3,7 @@ try:
     from coverage import Coverage
 except ImportError:
     pass
-from setuptools.command import test as TestCommand
+from setuptools.command.test import test as TestCommand
 
 
 class CoverageAnalysisCommand(TestCommand):

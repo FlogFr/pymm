@@ -1,5 +1,6 @@
 import os
 from setuptools import setup
+from test.support import CoverageAnalysisTestCommand
 
 
 def read(fname):
@@ -33,10 +34,8 @@ setup(
         'Topic :: Database',
         'Development Status :: 1 - Planning',
     ],
-    entry_points={
-        'distutils.commands': [
-            'coverage = test.support:CoverageAnalysisCommand',
-        ],
+    cmdclass={
+        'test': CoverageAnalysisTestCommand,
     },
     tests_require=[
         'coverage>=4.0.3',

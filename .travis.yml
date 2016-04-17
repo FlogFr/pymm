@@ -12,6 +12,4 @@ addons:
 before_script:
     - psql -c "CREATE DATABASE travis_ci_test;" -U postgres
     - psql -c "CREATE ROLE travis_ci_test WITH SUPERUSER LOGIN PASSWORD 'travis_ci_password';" -U postgres
-    - python setup.py install_egg_info
-    - python setup.py develop
-script: "python setup.py coverage"
+script: "python setup.py test"

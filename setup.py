@@ -24,6 +24,7 @@ setup(
     scripts=['bin/pymm'],
     install_requires=[
         'psycopg2>=2.6.1',
+        'six',
     ],
     classifiers=[
         'Programming Language :: Python',

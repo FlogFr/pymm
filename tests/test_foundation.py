@@ -10,6 +10,7 @@ session = pymm['default'] # get the default session
 import os
 import unittest
 import psycopg2
+from pymm.foundation import Pymm
 
 
 DB_USER = os.environ['DB_USER']
@@ -49,5 +50,10 @@ class BasicDBTest(unittest.TestCase):
 class FoundationTest(unittest.TestCase):
     """ Test the foundation module """
 
-    def test_dumb(self):
-        self.assertEqual(1 + 1, 2)
+    def test_create_session(self):
+        """
+        Functional test, going through the session creation, then creating
+        tables, inserting records, then fetching them one by one in a loop.
+        Should do only one call to the database.
+        """
+        Pymm(dsn=DSN)

@@ -8,10 +8,12 @@ Contains:
 - Client
 - ClientPooler
 """
+import abc
+import six
 
 
 class Pymm(object):
-    """ Interface to easily create Session through SessionBuilder"""
+    """ Object to easily create Session through SessionBuilder """
     _sessions = {}
 
     def __init__(self, *args, **kwargs):
@@ -39,7 +41,7 @@ class Pymm(object):
         pass
 
 
-class SessionInterface(object):
+class SessionInterface(object, six.with_metaclass=abc.ABCMeta):
     """
     SessionInterface object in order to query the DB from the client interface
 
@@ -50,18 +52,22 @@ class SessionInterface(object):
 
     I think it is client.session = SessionInterface()
     """
+    @abc.abstractmethod
     def __get__(self, obj, type=None):
-        assert isinstance(obj, ClientInterface)
-        return self.session
+        pass
 
+    @abc.abstractmethod
     def __set__(self, obj, value):
-        assert isinstance(obj, ClientInterface)
-        self.val = value
+        pass
 
 
 class Session(SessionInterface):
     """ Session implementation of the SessionInterface """
-    pass
+    def __get__(self, obj, type=None):
+        pass
+
+    def __set__(self, obj, value):
+        pass
 
 
 class SessionBuilder(object):
@@ -85,4 +91,4 @@ class ClientInterface(object):
 
     a Session is a data descriptor. This will have a
     """
-    session = SessionInterface()
+    session = Session()

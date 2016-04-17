@@ -1,9 +1,4 @@
-import six
 import sys
-try:
-    from coverage import Coverage
-except ImportError:
-    pass
 from pkg_resources import _namespace_packages
 from setuptools.command.test import test as TestCommand
 from setuptools.py31compat import unittest_main
@@ -15,6 +10,10 @@ class CoverageAnalysisTestCommand(TestCommand):
 
     def run_tests(self):
         " Run coverage on unit test "
+        # need to import here cause we are in a venv
+        import six
+        from coverage import Coverage
+
         coverage = Coverage()
         coverage.start()
 

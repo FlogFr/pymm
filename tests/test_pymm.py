@@ -41,6 +41,11 @@ class BasicDBTest(unittest.TestCase):
         conn.close()
 
 
+class ComputerProjection(pymm.PymmProjection):
+    """ default projection for computer table with all fields """
+    fields = ['name', 'ip']
+
+
 class PymmTest(unittest.TestCase):
     """ Test the foundation module """
 
@@ -59,6 +64,31 @@ class PymmTest(unittest.TestCase):
         cursor = pymm_session.cursor()
         self.assertIsInstance(cursor, psycopg2.extensions.cursor)
         cursor.close()
+
+    def test_retrieve_sql_raw(self):
+        my_pymm = pymm.Pymm(dsn=DSN)
+        cursor = my_pymm['default'].cursor()
+        cursor\
+            .execute("SELECT name, ip FROM computer WHERE ip = %s;", ('192.168.0.1', ))
+        ret = cursor.fetchone()
+        self.assertEqual(ret, ('desktop', '192.168.0.1'))
+        cursor.close()
+
+    def test_retrieve_raw_projection(self):
+        my_pymm = pymm.Pymm(dsn=DSN)
+        computer = my_pymm['default']\
+            .projection('tests.ComputerProjection')\
+            .execute("SELECT name, ip FROM computer WHERE ip = %s;", ('192.168.0.1', ))\
+            .fetchone()
+        self.assertEqual(computer, ('desktop', '192.168.0.1'))
+
+    def test_retrieve_wrong_projection(self):
+        my_pymm = pymm.Pymm(dsn=DSN)
+        with self.assertRaises(pymm.WrongProjectionException):
+            computer = my_pymm['default']\
+                .projection('tests.ComputerProjection')\
+                .execute("SELECT computer_id, name, ip FROM computer WHERE ip = %s;", ('192.168.0.1', ))\
+                .fetchone()
 
     def test_retrieve_model_manager(self):
         my_pymm = pymm.Pymm(default={'dsn': DSN,

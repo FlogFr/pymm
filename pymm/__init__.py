@@ -106,6 +106,9 @@ class PymmProjection(object):
     def fetchone(self):
         return self.cursor.fetchone()
 
+    def fetchall(self):
+        return self.cursor.fetchall()
+
 
 class PymmDjango(object):
     """ Pymm Model Manager for Django project """

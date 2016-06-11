@@ -74,13 +74,25 @@ class PymmTest(unittest.TestCase):
         self.assertEqual(ret, ('desktop', '192.168.0.1'))
         cursor.close()
 
-    def test_retrieve_raw_projection(self):
+    def test_retrieve_raw_projection_one(self):
         my_pymm = pymm.Pymm(dsn=DSN)
         computer = my_pymm['default']\
             .projection('tests.ComputerProjection')\
             .execute("SELECT name, ip FROM computer WHERE ip = %s;", ('192.168.0.1', ))\
             .fetchone()
         self.assertEqual(computer, ('desktop', '192.168.0.1'))
+
+    def test_retrieve_projection_all(self):
+        my_pymm = pymm.Pymm(dsn=DSN)
+        computer = my_pymm['default']\
+            .projection('tests.ComputerProjection')\
+            .execute("SELECT name, ip FROM computer WHERE additional_infos IS NULL;")\
+            .fetchall()
+        self.assertEqual(computer, [('desktop', '192.168.0.1'),
+                                    ('front1', '10.28.123.19'),
+                                    ('back1', '10.28.123.10'),
+                                    ('ci', '192.168.0.8'),
+                                    ('back2', '192.168.0.6')])
 
     def test_retrieve_wrong_projection(self):
         my_pymm = pymm.Pymm(dsn=DSN)

@@ -1,7 +1,8 @@
 Welcome to Pymm's documentation!
 ================================
 
-Pymm is a Python Model Manager. It is used with Postgresql 9.4+.
+Pymm is a Python Model Manager, the anti ORM and the default PostgreSQL schema
+entity handler.
 
 Contents:
 
@@ -18,4 +19,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

@@ -38,7 +38,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE computer (
-    computer_id bigint NOT NULL,
+    computer_id bigint NOT NULL PRIMARY KEY,
     name text NOT NULL,
     ip inet NOT NULL,
     public boolean NOT NULL,
@@ -82,8 +82,13 @@ CREATE TABLE manager (
     is_admin boolean
 );
 
-
 ALTER TABLE manager OWNER TO pymm;
+
+CREATE TABLE manager_computer_m2m (
+	manager_id bigint NOT NULL,
+	computer_id bigint NOT NULL,
+	additional_infos jsonb
+);
 
 --
 -- Name: manager_user_id_seq; Type: SEQUENCE; Schema: public; Owner: pymm
@@ -134,6 +139,8 @@ COPY computer (computer_id, name, ip, public, additional_infos) FROM stdin;
 7	back2	192.168.0.6	f	\N
 \.
 
+COMMENT ON COLUMN computer.ip IS 'Public network IP of the Computer';
+
 
 --
 -- Name: computer_computer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pymm
@@ -173,3 +180,10 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 -- PostgreSQL database dump complete
 --
 
+COPY manager_computer_m2m (manager_id, computer_id, additional_infos) FROM stdin;
+1	3	{}
+2	3	{}
+3	1	{}
+3	2	{}
+-1	2	{}
+\.

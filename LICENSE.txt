@@ -1,5 +1,5 @@
 Pymm, Python Model Manager
-Copyright (C) 2016 @aRkadeFR
+Copyright (C) 2016-current @aRkadeFR
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

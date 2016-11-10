@@ -23,6 +23,7 @@ setup(
     keywords='pymm model manager postgresql postgres database',
     packages=['pymm', ],
     scripts=['bin/pymm'],
+    zip_safe=True,
     install_requires=[
         'psycopg2>=2.6.1',
         'six>=1.10.0',
@@ -39,6 +40,7 @@ setup(
     },
     tests_require=[
         'coverage>=4.0.3',
+        'mock>=2.0.0',
     ],
     test_suite='tests',
 )

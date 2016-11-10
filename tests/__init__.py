@@ -1,11 +1,13 @@
 """
-tests for Pymm project
+Pymm Project Tests module
 """
-from __future__ import absolute_import
+import os
+import unittest
 
-from .test_pymm import *  # NOQA
 
-__all__ = [
-    "BasicDBTest",
-    "FoundationTest",
-]
+class PymmBaseTest(unittest.TestCase):
+    """ Base class for all Pymm tests """
+
+    def setUp(self, *args, **kwargs):
+        super(PymmBaseTest, self).setUp(*args, **kwargs)
+        self.DSN = os.environ['PYMM_DSN']

@@ -32,7 +32,7 @@ class CoverageAnalysisTestCommand(TestCommand):
                         del_modules.append(name)
                 list(map(sys.modules.__delitem__, del_modules))
 
-        unittest_main(
+        test_result = unittest_main(
             None, None, self._argv,
             testLoader=self._resolve_as_ep(self.test_loader),
             testRunner=self._resolve_as_ep(self.test_runner),
@@ -42,3 +42,6 @@ class CoverageAnalysisTestCommand(TestCommand):
         coverage.stop()
         coverage.save()
         coverage.report(show_missing=False)
+
+        if not test_result.result.wasSuccessful():
+            exit(1)
